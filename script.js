@@ -19,12 +19,15 @@ async function fetchContests() {
         const data = await response.json();
 
         if (data.status === 'OK') {
-            const upcoming = data.result.filter(contest => contest.phase === 'BEFORE').sort((a, b) => a.startTimeSeconds - b.startTimeSeconds).slice(0, 5);
+            const upcoming = data.result
+                .filter(contest => contest.phase === 'BEFORE')
+                .sort((a, b) => a.startTimeSeconds - b.startTimeSeconds)
+                .slice(0, 5);
 
             list_element.innerHTML = '';
 
             if (upcoming.length === 0) {
-                list_element.innerHTML = '<li>No upcoming contests found :( </li>';
+                list_element.innerHTML = '<li>No upcoming contests found :(</li>';
                 return;
             }
 
@@ -32,12 +35,12 @@ async function fetchContests() {
                 const start_time = new Date(contest.startTimeSeconds * 1000);
                 const li = document.createElement('li');
 
-                const contest_date = startTime.toISOString().split('T')[0];
+                const contest_date = start_time.toISOString().split('T')[0];
                 li.setAttribute('data-contest-date', contest_date);
 
                 li.innerHTML = `
                     <span class="contest-name">${contest.name}</span>
-                    <span class="contest-time">${start_time.toLocaleDateString()} at ${start_time.toLocaleDateString([], {hour: '2-digit', minute: '2-digit'})}</span>
+                    <span class="contest-time">${start_time.toLocaleDateString()} at ${start_time.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</span>
                 `;
 
                 li.addEventListener('mouseenter', () => {
@@ -58,7 +61,7 @@ async function fetchContests() {
             });
         }
     } catch (err) {
-        list_element.innerHTML = '<li>unable to load contests :(</li>';
+        list_element.innerHTML = '<li>Unable to load contests :(</li>';
     }
 }
 
@@ -69,7 +72,7 @@ let current_cal_date = new Date();
 function renderCalendar() {
     const month_year_text = document.getElementById('calendar-month-year');
     const grid = document.getElementById('calendar-grid');
-    grid.innerHtml = '';
+    grid.innerHTML = ''; // Fixed innerHTML typo
 
     const year = current_cal_date.getFullYear();
     const month = current_cal_date.getMonth();
@@ -152,7 +155,7 @@ function saveAndRenderTodo() {
 
 todo_form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const text = todo_input.ariaValueMax.trim();
+    const text = todo_input.value.trim(); // Fixed ariaValueMax typo
     if (text) {
         todos.push({text, completed: false});
         todo_input.value = '';
