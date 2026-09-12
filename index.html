@@ -9,16 +9,63 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="container">
         <div id="clock">
-            <h1><time id="time">00:00:00 AM</time></h1>
-            <p id="date">XX/XX/XXXX</p>
+            <h1><time id="time">loading time</time></h1>
+            <p id="date">loading date</p>
         </div>
-        <form id="search">
-            <input type="text" name="q" placeholder="Search..." autocomplete="off" autofocus>
+
+        <form id="search" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q" placeholder="Search Google..." autocomplete="off" autofocus>
         </form>
+
+        <div id="shortcuts">
+            <a href="https://discord.com/app" target="_blank" class="shortcut-card" title="Discord">
+                <i class="fa-brands fa-discord"></i>
+                <span>Discord</span>
+            </a>
+            <a href="https://reddit.com" target="_blank" class="shortcut-card" title="Reddit">
+                <i class="fa-brands fa-reddit-alien"></i>
+                <span>Reddit</span>
+            </a>
+            <a href="https://github.com" target="_blank" class="shortcut-card" title="GitHub">
+                <i class="fa-brands fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="shortcut-card" title="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+                <span>YouTube</span>
+            </a>
+        </div>
+
+        <div id="widgets-grid">
+            <div class="widget">
+                <h2><i class="fa-solid fa-trophy"></i> Codeforces Contests</h2>
+                <ul id="contest-list" class="widget-content">
+                    <li class="loading">fetching contests</li>
+                </ul>
+            </div>
+
+            <div class="widget">
+                <div class="calendar-header">
+                    <button id="prev-month">&lt;</button>
+                    <span id="calendar-month-year"></span>
+                    <button id="next-month">&gt;</button>
+                </div>
+                <div id="calendar-grid"></div>
+            </div>
+
+            <div class="widget">
+                <h2><i class="fa-solid fa-list-check"></i> Tasks</h2>
+                <form id="todo-form">
+                    <input type="text" id="todo-input" placeholder="Add task..." autocomplete="off">
+                </form>
+                <ul id="todo-list" class="widget-content"></ul>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
