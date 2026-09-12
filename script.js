@@ -1,3 +1,5 @@
+// github pages sometimes pmo
+
 function updateClock() {
     const time_element = document.getElementById('time');
     const date_element = document.getElementById('date');
@@ -72,7 +74,7 @@ let current_cal_date = new Date();
 function renderCalendar() {
     const month_year_text = document.getElementById('calendar-month-year');
     const grid = document.getElementById('calendar-grid');
-    grid.innerHTML = ''; // Fixed innerHTML typo
+    grid.innerHTML = ''; 
 
     const year = current_cal_date.getFullYear();
     const month = current_cal_date.getMonth();
@@ -155,7 +157,7 @@ function saveAndRenderTodo() {
 
 todo_form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const text = todo_input.value.trim(); // Fixed ariaValueMax typo
+    const text = todo_input.value.trim();
     if (text) {
         todos.push({text, completed: false});
         todo_input.value = '';
